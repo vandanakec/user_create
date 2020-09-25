@@ -1,0 +1,12 @@
+myusers:
+ - name: ravi
+   uid: 1050
+   first: ravi
+   last: sharma
+
+ - name: jeff
+   uid: 1051
+   first: jeff
+   last: reddy
+
+
