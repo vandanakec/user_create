@@ -1,0 +1,18 @@
+- hosts: servera
+  gather_facts: false
+  become: yes
+  vars_files: 
+    - user_list.yml
+  tasks:
+    - name: add user 
+      vars:
+       password: "{{ lookup('password', '' + '{{item.name}}.password' + ' length=6')}}"
+      user:
+       name: "{{ item.name }}"
+       uid: "{{ item.uid }}"
+       comment: "{{ item.first}} {{ item.last}}"
+       password: "{{ password | password_hash('sha512')}}"
+       update_password: on_create
+      with_items: "{{ myusers }}"
+  
+       
